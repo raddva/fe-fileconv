@@ -1,10 +1,8 @@
 "use client"
 
-import { Navbar } from "@/components/common/app-navbar"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { File, Split, FileCog, FileText, ImageIcon, Presentation, Sheet, Pencil } from "lucide-react"
-import Footer from "@/components/common/footer"
 
 const tools = [
   {
@@ -71,7 +69,7 @@ export default function DashboardPage() {
     <div className="flex flex-col">
       <section className="text-center mt-10 px-4">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 bg-clip-text text-transparent leading-tight pb-1">
-          Your complete PDF toolbox — fast, easy, and free
+          Your complete File toolbox — fast, easy, and free
         </h1>
         <p className="mt-2 text-muted-foreground text-base max-w-2xl mx-auto">
           100% Free and easy to use.

@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/common/app-navbar";
 import { Tools } from "@/components/common/tools";
 
 export default function Split() {

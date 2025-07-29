@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { File } from "lucide-react"
+import { File, FileCog, FileQuestionMark, FileText, Globe, Home, Image, ImageIcon, Menu, Merge, PersonStanding, Presentation, SheetIcon, Split } from "lucide-react"
 
 import {
     NavigationMenu,
@@ -15,6 +15,14 @@ import {
 } from "@/components/ui/navigation-menu"
 import { DarkmodeToggle } from "./mode-toggle"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import {
+    Sheet,
+    SheetTrigger,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+} from "@/components/ui/sheet"
+import { Separator } from "../ui/separator"
 
 const fileTools = [
     {
@@ -60,7 +68,7 @@ const pdfTools = [
 export function Navbar() {
     return (
         <header className="w-full border-b bg-background z-50">
-            <div className="relative flex items-center h-16 px-4">
+            <div className="flex items-center h-16 px-4 justify-between">
                 <div className="flex items-center gap-2 font-bold">
                     <Link href="/" className="flex items-center gap-2">
                         <div className="bg-gradient-to-r from-red-500 to-pink-500 p-2 rounded-md flex items-center justify-center">
@@ -69,7 +77,8 @@ export function Navbar() {
                         <span className="bg-gradient-to-r from-red-500 to-pink-500 text-transparent bg-clip-text">FILECONV</span>
                     </Link>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2">
+
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
                     <NavigationMenu>
                         <NavigationMenuList className="flex items-center gap-4">
                             <NavigationMenuItem>
@@ -77,7 +86,6 @@ export function Navbar() {
                                     <Link href="/">Home</Link>
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
-
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>Convert PDF</NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -92,7 +100,6 @@ export function Navbar() {
                                                     A powerful open-source toolset by Nadya. Learn more →
                                                 </p>
                                             </Link>
-
                                         </li>
                                         {fileTools.map((component) => (
                                             <ListItem
@@ -106,10 +113,9 @@ export function Navbar() {
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger>PDF Tools</NavigationMenuTrigger>
-                                <NavigationMenuContent >
+                                <NavigationMenuContent>
                                     <ul className="grid w-[400px]">
                                         {pdfTools.map((component) => (
                                             <ListItem
@@ -137,17 +143,83 @@ export function Navbar() {
                                             </NavigationMenuLink>
                                         </span>
                                     </TooltipTrigger>
-                                    <TooltipContent>
-                                        Coming very soon!
-                                    </TooltipContent>
+                                    <TooltipContent>Coming very soon!</TooltipContent>
                                 </Tooltip>
                             </NavigationMenuItem>
-
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
-                <div className="ml-auto">
+                <div className="flex items-center gap-4">
                     <DarkmodeToggle />
+                    <div className="md:hidden">
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <button>
+                                    <Menu className="h-6 w-6" />
+                                </button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="w-[280px] sm:w-[300px]">
+                                <SheetHeader>
+                                    <SheetTitle className="text-left text-lg font-semibold">📂 Menu</SheetTitle>
+                                </SheetHeader>
+
+                                <div className="mt-6 space-y-6 ml-6 mr-2">
+                                    <div>
+                                        <Link href="/" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
+                                            <Home className="w-4 h-4" />
+                                            Home
+                                        </Link>
+                                        <Link href="/about" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
+                                            <Globe className="w-4 h-4" />
+                                            About
+                                        </Link>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-sm font-semibold text-muted-foreground mb-2">Convert PDF</p>
+                                        <div className="space-y-2">
+                                            {fileTools.map((tool) => (
+                                                <Link
+                                                    key={tool.title}
+                                                    href={tool.href}
+                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                >
+                                                    {getIcon(tool.title)}
+                                                    {tool.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <Separator />
+
+                                    <div>
+                                        <p className="text-sm font-semibold text-muted-foreground mb-2">PDF Tools</p>
+                                        <div className="space-y-2">
+                                            {pdfTools.map((tool) => (
+                                                <Link
+                                                    key={tool.title}
+                                                    href={tool.href}
+                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                >
+                                                    {getIcon(tool.title)}
+                                                    {tool.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <Separator />
+
+                                    <div className="text-sm text-muted-foreground flex items-center gap-2">
+                                        <FileCog className="w-4 h-4" />
+                                        File Editor <span className="text-gray-400">(Coming Soon)</span>
+                                    </div>
+                                </div>
+                            </SheetContent>
+                        </Sheet>
+
+                    </div>
                 </div>
             </div>
         </header>
@@ -172,4 +244,25 @@ function ListItem({
             </NavigationMenuLink>
         </li>
     )
+}
+
+function getIcon(name: string) {
+    switch (name) {
+        case "PDF - DOCX":
+            return <FileText className="w-4 h-4" />
+        case "PDF - IMG":
+            return <ImageIcon className="w-4 h-4" />
+        case "PDF - XLSX":
+            return <SheetIcon className="w-4 h-4" />
+        case "PDF - PPTX":
+            return <Presentation className="w-4 h-4" />
+        case "Merge PDFs":
+            return <Merge className="w-4 h-4" />
+        case "Split PDFs":
+            return <Split className="w-4 h-4" />
+        case "Compress PDFs":
+            return <FileCog className="w-4 h-4" />
+        default:
+            return <FileText className="w-4 h-4" />
+    }
 }

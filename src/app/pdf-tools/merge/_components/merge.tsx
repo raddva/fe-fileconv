@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/common/app-navbar";
-import Footer from "@/components/common/footer";
 import { Tools } from "@/components/common/tools";
 
 export default function Merge() {
@@ -8,7 +6,7 @@ export default function Merge() {
             <Tools
                 title="Merge PDF"
                 accept="application/pdf"
-                multiple={false}
+                multiple={true}
                 endpoint="/merge"
             />
         </div>

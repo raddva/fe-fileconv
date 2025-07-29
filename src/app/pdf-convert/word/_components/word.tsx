@@ -24,7 +24,7 @@ export function Word() {
                         title="PDF to DOCX"
                         accept="application/pdf"
                         multiple={false}
-                        endpoint="/pdf-to-word"
+                        endpoint="/pdf-to-docx"
                     />
                 </TabsContent>
             </Tabs>
