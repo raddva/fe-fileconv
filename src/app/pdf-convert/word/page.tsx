@@ -1,4 +1,4 @@
-import Word from './_components/word';
+import { Word } from "./_components/word"; './_components/word';
 
 export const metadata = {
     title: 'File Converter | Word',

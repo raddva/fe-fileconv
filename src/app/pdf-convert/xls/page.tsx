@@ -1,4 +1,4 @@
-import Excel from './_components/xls';
+import { Excel } from './_components/xls';
 
 export const metadata = {
     title: 'File Converter | Excel',

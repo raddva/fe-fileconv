@@ -14,6 +14,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { DarkmodeToggle } from "./mode-toggle"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 const fileTools = [
     {
@@ -60,12 +61,12 @@ export function Navbar() {
     return (
         <header className="w-full border-b bg-background z-50">
             <div className="relative flex items-center h-16 px-4">
-                <div className="flex items-center gap-2 font-semibold">
+                <div className="flex items-center gap-2 font-bold">
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="bg-red-800 p-2 rounded-md flex items-center justify-center">
+                        <div className="bg-gradient-to-r from-red-500 to-pink-500 p-2 rounded-md flex items-center justify-center">
                             <File className="size-5" />
                         </div>
-                        <span>File Converter</span>
+                        <span className="bg-gradient-to-r from-red-500 to-pink-500 text-transparent bg-clip-text">FILECONV</span>
                     </Link>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2">
@@ -82,19 +83,16 @@ export function Navbar() {
                                 <NavigationMenuContent>
                                     <ul className="grid lg:grid-cols-[.75fr_1fr] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                         <li className="row-span-4">
-                                            <NavigationMenuLink asChild>
-                                                <Link
-                                                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
-                                                    href="/"
-                                                >
-                                                    <div className="mt-4 mb-2 text-lg font-medium">
-                                                        Mndy File Converter
-                                                    </div>
-                                                    <p className="text-muted-foreground text-sm leading-tight">
-                                                        Beautifully designed by Maandy!!
-                                                    </p>
-                                                </Link>
-                                            </NavigationMenuLink>
+                                            <Link
+                                                href="/about"
+                                                className="bg-gradient-to-b from-red-500 to-pink-500 flex h-full w-full flex-col justify-end rounded-md p-6 no-underline outline-none select-none focus:shadow-md"
+                                            >
+                                                <div className="mt-4 mb-2 text-lg font-bold">Mndy File Converter</div>
+                                                <p className="text-sm leading-tight">
+                                                    A powerful open-source toolset by Nadya. Learn more →
+                                                </p>
+                                            </Link>
+
                                         </li>
                                         {fileTools.map((component) => (
                                             <ListItem
@@ -125,12 +123,26 @@ export function Navbar() {
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-
                             <NavigationMenuItem>
-                                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                    <Link href="/">File Editor</Link>
-                                </NavigationMenuLink>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <span className="cursor-not-allowed">
+                                            <NavigationMenuLink
+                                                asChild
+                                                className={`${navigationMenuTriggerStyle()} pointer-events-none`}
+                                            >
+                                                <Link href="#" onClick={(e) => e.preventDefault()}>
+                                                    File Editor
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        Coming very soon!
+                                    </TooltipContent>
+                                </Tooltip>
                             </NavigationMenuItem>
+
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>

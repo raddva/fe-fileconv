@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚙️ File Converter Frontend
 
-## Getting Started
+This is the frontend of a full-stack file converter application built using **Next.js 14**, **TypeScript**, **TailwindCSS**, and **ShadCN UI**. It connects to the Flask backend via API routes to convert, merge, split, and compress PDF files, as well as convert between DOCX, XLSX, PPTX, and image formats.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌐 Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Coming soon – deployed via Vercel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧱 Tech Stack
 
-## Learn More
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ShadCN UI](https://ui.shadcn.dev/)
+- [Lucide Icons](https://lucide.dev/)
+- [React Hook Form](https://react-hook-form.com/)
+- [React Dropzone](https://react-dropzone.js.org/)
+- [Axios](https://axios-http.com/)
+- [Framer Motion](https://www.framer.com/motion/) (optional animations)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Install dependencies**
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+3. **Open your browser**
+   Visit http://localhost:3000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+frontend/
+├── app/ # App directory (Next.js 14)
+│ ├── layout.tsx # Layout with Navbar/Footer
+│ └── page.tsx # Home page
+├── components/ # Reusable UI components
+│ ├── common/ # Navbar, Footer, DarkMode
+│ └── tools/ # File tool UIs (e.g. Merge, Split, Convert)
+├── lib/ # Utility functions (e.g. API, validation)
+├── public/ # Static files
+├── styles/ # Global styles (if any)
+├── actions/ # Frontend logic for conversion API
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
+
+## 🛠 Features (Frontend UI)
+
+- 📄 Upload and preview files before conversion
+- ⚡ Drag and drop interface
+- 🧠 Smart tool detection
+- 🎨 Light/Dark mode with toggle
+- 📦 File conversion tools:
+  - PDF ↔️ DOCX
+  - PDF ↔️ XLSX
+  - PDF ↔️ PPTX
+  - PDF ↔️ Images
+  - Merge/Split/Compress PDFs
+
+## 📝 License
+
+MIT License

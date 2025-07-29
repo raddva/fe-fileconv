@@ -47,33 +47,31 @@ const tools = [
     description: "Convert PDFs into PPTX slideshows.",
     href: "/pdf-convert/pptx",
     icon: <Presentation className="text-orange-400" />,
-    badge: "",
+    badge: "⚠️ Maintenance",
   },
   {
     title: "PDF to Excel",
     description: "Convert tables from PDF into editable Excel files.",
     href: "/pdf-convert/xlsx",
     icon: <Sheet className="text-green-600" />,
-    badge: "",
+    badge: "⚠️ Maintenance",
   },
   {
     title: "Edit PDF",
     description: "Add text, images, or annotations to your PDFs.",
     href: "/pdf-convert/pdf-edit",
     icon: <Pencil className="text-purple-600" />,
-    badge: "Coming Soon",
+    badge: "🛠️ Coming Soon",
     is_disabled: true,
   },
 ]
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <div className="flex flex-col">
       <section className="text-center mt-10 px-4">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Every tool you need to work with PDFs in one place
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 bg-clip-text text-transparent leading-tight pb-1">
+          Your complete PDF toolbox — fast, easy, and free
         </h1>
         <p className="mt-2 text-muted-foreground text-base max-w-2xl mx-auto">
           100% Free and easy to use.
@@ -81,11 +79,11 @@ export default function DashboardPage() {
       </section>
 
       <main className="flex-grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 max-w-7xl mx-auto">
-        {tools.map((tool) => (
+        {tools.map((tool) =>
           tool.is_disabled ? (
             <div
               key={tool.title}
-              className="border rounded-xl p-4 flex flex-col gap-2 cursor-not-allowed"
+              className="border rounded-xl p-4 flex flex-col gap-2 cursor-not-allowed opacity-60"
             >
               <div className="flex items-center justify-between">
                 <div className="text-2xl">{tool.icon}</div>
@@ -98,7 +96,7 @@ export default function DashboardPage() {
             <Link
               key={tool.title}
               href={tool.href}
-              className="border rounded-xl p-4 flex flex-col gap-2 hover:shadow-md transition"
+              className="border rounded-xl p-4 flex flex-col gap-2 transition duration-300 transform hover:scale-[1.03] hover:border-primary"
             >
               <div className="flex items-center justify-between">
                 <div className="text-2xl">{tool.icon}</div>
@@ -108,10 +106,8 @@ export default function DashboardPage() {
               <p className="text-muted-foreground text-sm">{tool.description}</p>
             </Link>
           )
-        ))}
+        )}
       </main>
-
-      <Footer />
     </div>
   );
 }
