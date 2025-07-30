@@ -27,13 +27,6 @@ const tools = [
     badge: "",
   },
   {
-    title: "PDF to Word",
-    description: "Convert PDF files into editable DOC and DOCX documents.",
-    href: "/pdf-convert/docx",
-    icon: <FileText className="text-blue-500" />,
-    badge: "",
-  },
-  {
     title: "PDF to Image",
     description: "Convert PDF files to high-quality images and vice versa.",
     href: "/pdf-convert/image",
@@ -41,16 +34,23 @@ const tools = [
     badge: "",
   },
   {
+    title: "PDF to Word",
+    description: "Convert PDF files into editable DOC and DOCX documents.",
+    href: "/pdf-convert/word",
+    icon: <FileText className="text-blue-500" />,
+    badge: "⚠️ Maintenance",
+  },
+  {
     title: "PDF to PowerPoint",
     description: "Convert PDFs into PPTX slideshows.",
-    href: "/pdf-convert/pptx",
+    href: "/pdf-convert/ppt",
     icon: <Presentation className="text-orange-400" />,
     badge: "⚠️ Maintenance",
   },
   {
     title: "PDF to Excel",
     description: "Convert tables from PDF into editable Excel files.",
-    href: "/pdf-convert/xlsx",
+    href: "/pdf-convert/xls",
     icon: <Sheet className="text-green-600" />,
     badge: "⚠️ Maintenance",
   },
@@ -67,7 +67,7 @@ const tools = [
 export default function DashboardPage() {
   return (
     <div className="flex flex-col">
-      <section className="text-center mt-10 px-4">
+      <section className="text-center px-4 py-16">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 bg-clip-text text-transparent leading-tight pb-1">
           Your complete File toolbox — fast, easy, and free
         </h1>

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { File, FileCog, FileQuestionMark, FileText, Globe, Home, Image, ImageIcon, Menu, Merge, PersonStanding, Presentation, SheetIcon, Split } from "lucide-react"
+import { File, FileCog, FileText, Globe, Home, ImageIcon, Menu, Merge, Presentation, SheetIcon, Split } from "lucide-react"
 
 import {
     NavigationMenu,
@@ -95,7 +95,7 @@ export function Navbar() {
                                                 href="/about"
                                                 className="bg-gradient-to-b from-red-500 to-pink-500 flex h-full w-full flex-col justify-end rounded-md p-6 no-underline outline-none select-none focus:shadow-md"
                                             >
-                                                <div className="mt-4 mb-2 text-lg font-bold">Mndy File Converter</div>
+                                                <div className="mt-4 mb-2 text-lg font-bold">Fileconv</div>
                                                 <p className="text-sm leading-tight">
                                                     A powerful open-source toolset by Nadya. Learn more →
                                                 </p>

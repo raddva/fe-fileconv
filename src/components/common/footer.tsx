@@ -8,7 +8,7 @@ export default function Footer() {
                 <p>&copy; {new Date().getFullYear()} Fileconv by Nadya. All rights reserved.</p>
 
                 <div className="flex items-center gap-4">
-                    <Link href="https://github.com/radiva" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://github.com/raddva" target="_blank" rel="noopener noreferrer">
                         <Github className="w-5 h-5 hover:text-foreground transition" />
                     </Link>
                     <Link href="https://instagram.com/raddva" target="_blank" rel="noopener noreferrer">
