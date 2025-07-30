@@ -35,7 +35,7 @@ export default function About() {
 
             <Card className="shadow-sm border-dashed transition duration-100 transform hover:scale-[1.03] hover:border-primary">
                 <CardHeader>
-                    <CardTitle>Meet the <span className="bg-gradient-to-r from-yellow-500 via-white to-orange-500 text-transparent bg-clip-text">Starry</span> Creator <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-transparent bg-clip-text">⟡</span></CardTitle>
+                    <CardTitle>Meet the <span className="bg-gradient-to-r from-yellow-500 via-gray-300 to-orange-500 text-transparent bg-clip-text">Starry</span> Creator <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-transparent bg-clip-text">⟡</span></CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col md:flex-row items-start md:items-center gap-4 text-muted-foreground">
                     <Avatar className="w-16 h-16">

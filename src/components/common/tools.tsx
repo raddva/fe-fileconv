@@ -7,19 +7,30 @@ import { toast } from "sonner";
 import { AlertTriangle, UploadCloud, FileText, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Label } from "@/components/ui/label";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
     title: string;
     accept: string;
     multiple: boolean;
     endpoint: string;
+    extra?: React.ReactNode;
 };
 
-export function Tools({ title, accept, multiple, endpoint }: Props) {
+export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
     const [files, setFiles] = useState<File[]>([]);
     const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+    const [downloadFilename, setDownloadFilename] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
+    const [compressionLevel, setCompressionLevel] = useState("medium");
 
     const backendUrl = "http://localhost:5000";
 
@@ -27,6 +38,7 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
         const uploaded = e.target.files;
         if (!uploaded) return;
         setDownloadUrl(null);
+        setDownloadFilename(null);
         setFiles(multiple ? Array.from(uploaded) : [uploaded[0]]);
     };
 
@@ -36,6 +48,7 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
         const dropped = e.dataTransfer.files;
         if (!dropped) return;
         setDownloadUrl(null);
+        setDownloadFilename(null);
         setFiles(multiple ? Array.from(dropped) : [dropped[0]]);
     };
 
@@ -64,6 +77,17 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
             formData.append(key, files[0]);
         }
 
+        if (endpoint === "/compress") {
+            formData.append("power", compressionLevel);
+        }
+
+        if (endpoint === "/split") {
+            const rangeInput = document.getElementById("ranges") as HTMLInputElement;
+            if (rangeInput?.value) {
+                formData.append("ranges", rangeInput.value);
+            }
+        }
+
         setLoading(true);
         try {
             const res = await fetch(`${backendUrl}${endpoint}`, {
@@ -78,16 +102,20 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
                 const json = await res.json();
                 if (json.images?.length) {
                     setDownloadUrl(json.images[0]);
+                    setDownloadFilename("output.zip");
                 }
             } else {
                 const blob = await res.blob();
+
                 const disposition = res.headers.get("Content-Disposition");
                 const match = disposition?.match(/filename="?([^"]+)"?/);
                 const filename = match?.[1] || "download";
 
                 const blobUrl = URL.createObjectURL(blob);
                 setDownloadUrl(blobUrl);
+                setDownloadFilename(filename);
 
+                // Optionally auto-download:
                 const a = document.createElement("a");
                 a.href = blobUrl;
                 a.download = filename;
@@ -123,7 +151,9 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
                     )}
                 >
                     <UploadCloud className="w-12 h-12 text-muted-foreground mb-2" />
-                    <p className="text-sm text-muted-foreground mb-1">Drag & drop your file(s) here</p>
+                    <p className="text-sm text-muted-foreground mb-1">
+                        Drag & drop your file(s) here
+                    </p>
                     <p className="text-xs text-muted-foreground">or click to select manually</p>
                     <Input
                         type="file"
@@ -158,19 +188,37 @@ export function Tools({ title, accept, multiple, endpoint }: Props) {
                     </div>
                 )}
 
+                {extra && <div className="mt-4">{extra}</div>}
+
+                {endpoint === "/compress" && (
+                    <div className="mt-6">
+                        <Label className="text-sm mb-1">Compression level</Label>
+                        <Select value={compressionLevel} onValueChange={setCompressionLevel}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select level" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="low">Low (best quality)</SelectItem>
+                                <SelectItem value="medium">Medium</SelectItem>
+                                <SelectItem value="high">High (smallest size)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                )}
+
                 <div className="mt-6">
                     <Button disabled={!files.length || loading} onClick={handleConvert} className="w-full">
                         {loading ? "Processing..." : "Process"}
                     </Button>
                 </div>
 
-                {downloadUrl && (
+                {downloadUrl && downloadFilename && (
                     <a
                         href={downloadUrl}
-                        download
+                        download={downloadFilename}
                         className="block text-center text-blue-600 underline text-sm mt-4"
                     >
-                        Download Result
+                        Download Result ({downloadFilename})
                     </a>
                 )}
             </div>
