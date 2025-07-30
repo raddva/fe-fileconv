@@ -32,7 +32,7 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
     const [isDragOver, setIsDragOver] = useState(false);
     const [compressionLevel, setCompressionLevel] = useState("medium");
 
-    const backendUrl = "http://localhost:5000";
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
 
     const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const uploaded = e.target.files;
