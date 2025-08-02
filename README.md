@@ -1,12 +1,6 @@
-# ⚙️ File Converter Frontend
+# ⚙️ File Converter (Front-end)
 
 This is the frontend of a full-stack file converter application built using **Next.js 14**, **TypeScript**, **TailwindCSS**, and **ShadCN UI**. It connects to the Flask backend via API routes to convert, merge, split, and compress PDF files, as well as convert between DOCX, XLSX, PPTX, and image formats.
-
----
-
-## 🌐 Live Demo
-
-> Coming soon – deployed via Vercel.
 
 ---
 
@@ -22,7 +16,7 @@ This is the frontend of a full-stack file converter application built using **Ne
 - [Axios](https://axios-http.com/)
 - [Framer Motion](https://www.framer.com/motion/) (optional animations)
 
----
+
 
 ## 🚀 Getting Started
 
@@ -39,8 +33,10 @@ This is the frontend of a full-stack file converter application built using **Ne
 3. **Open your browser**
    Visit http://localhost:3000
 
+
 ## 📁 Project Structure
 
+```bash
 frontend/
 ├── app/ # App directory (Next.js 14)
 │ ├── layout.tsx # Layout with Navbar/Footer
@@ -55,6 +51,8 @@ frontend/
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── README.md
+```
+
 
 ## 🛠 Features (Frontend UI)
 
@@ -68,7 +66,16 @@ frontend/
   - PDF ↔️ PPTX
   - PDF ↔️ Images
   - Merge/Split/Compress PDFs
+- Image Tools:
+  - Convert to JPG (soon)
+  - Background Remove (new!)
+  - Image to Text (new!)
+  - Upscale Image (new!)
+  - Compress Image (new!)
+  - Crop & Resize Image (soon)
 
-## 📝 License
+---
 
-MIT License
+## 🌐 Live Demo
+
+This project has been deployed via [Vercel](https://fileconv.vercel.app/)
