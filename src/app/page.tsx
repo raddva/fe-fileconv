@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-import { File, Split, FileCog, FileText, ImageIcon, Presentation, Sheet, Pencil } from "lucide-react"
+import { File, Split, FileCog, FileText, ImageIcon, Presentation, Sheet, Pencil, Crop, ImageUpscale, ImageDown, Images, FileImage, ScanText } from "lucide-react"
 
 const tools = [
   {
@@ -45,20 +45,76 @@ const tools = [
     description: "Convert PDFs into PPTX slideshows.",
     href: "/pdf-convert/ppt",
     icon: <Presentation className="text-orange-400" />,
-    badge: "⚠️ Maintenance",
+    badge: "",
   },
   {
     title: "PDF to Excel",
     description: "Convert tables from PDF into editable Excel files.",
     href: "/pdf-convert/xls",
     icon: <Sheet className="text-green-600" />,
-    badge: "⚠️ Maintenance",
+    badge: "",
   },
   {
     title: "Edit PDF",
     description: "Add text, images, or annotations to your PDFs.",
     href: "/pdf-convert/pdf-edit",
     icon: <Pencil className="text-purple-600" />,
+    badge: "🛠️ Coming Soon",
+    is_disabled: true,
+  },
+  {
+    title: "Remove Image Background",
+    description: "Easily remove backgrounds from images with our AI-powered tool.",
+    href: "/image-tools/remove-bg",
+    icon: <Images className="text-gray-500" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Compress Image",
+    description: "Reduce image file size without losing quality.",
+    href: "/image-tools/compress",
+    icon: <ImageDown className="text-orange-600" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Upscale Image",
+    description: "Enhance image resolution and quality with AI upscaling.",
+    href: "/image-tools/upscale",
+    icon: <ImageUpscale className="text-green-500" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Crop Image",
+    description: "Crop images to focus on the important parts.",
+    href: "/image-tools/crop",
+    icon: <Crop className="text-pink-500" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Convert to JPG",
+    description: "Convert any image format to JPG quickly and easily.",
+    href: "/image-tools/to-jpg",
+    icon: <FileImage className="text-red-400" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Image to Text",
+    description: "Extract text from images using OCR technology.",
+    href: "/image-tools/to-text",
+    icon: <ScanText className="text-white" />,
+    badge: "",
+    is_disabled: false,
+  },
+  {
+    title: "Image Editor",
+    description: "Edit images with various tools like filters, text, and more.",
+    href: "/image-tools/editor",
+    icon: <ImageIcon className="text-yellow-500" />,
     badge: "🛠️ Coming Soon",
     is_disabled: true,
   },

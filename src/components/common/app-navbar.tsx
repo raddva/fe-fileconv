@@ -65,6 +65,44 @@ const pdfTools = [
     },
 ]
 
+const imgTools = [
+    {
+        title: "Remove Background",
+        href: "/image-tools/remove-bg",
+        description: "Remove the background from your images easily",
+    },
+    {
+        title: "Upscale Image",
+        href: "/image-tools/upscale",
+        description: "Upscale your images to higher resolutions without losing quality",
+    },
+    {
+        title: "Compress Image",
+        href: "/image-tools/compress",
+        description: "Compress your image files to reduce their size",
+    },
+    {
+        title: "Convert to JPG",
+        href: "/image-tools/jpg-convert",
+        description: "Convert any image format to JPG",
+    },
+    // {
+    //     title: "Resize Image",
+    //     href: "/image-tools/resize",
+    //     description: "Resize your images to fit your needs",
+    // },
+    {
+        title: "Crop Image",
+        href: "/image-tools/crop",
+        description: "Crop your images to a specific size or aspect ratio",
+    },
+    {
+        title: "Image to Text",
+        href: "/image-tools/to-text",
+        description: "Extract text from your images",
+    },
+]
+
 export function Navbar() {
     return (
         <header className="w-full border-b bg-background z-50">
@@ -118,6 +156,22 @@ export function Navbar() {
                                 <NavigationMenuContent>
                                     <ul className="grid w-[400px]">
                                         {pdfTools.map((component) => (
+                                            <ListItem
+                                                key={component.title}
+                                                title={component.title}
+                                                href={component.href}
+                                            >
+                                                {component.description}
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>Image Tools</NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px]">
+                                        {imgTools.map((component) => (
                                             <ListItem
                                                 key={component.title}
                                                 title={component.title}
@@ -197,6 +251,22 @@ export function Navbar() {
                                         <p className="text-sm font-semibold text-muted-foreground mb-2">PDF Tools</p>
                                         <div className="space-y-2">
                                             {pdfTools.map((tool) => (
+                                                <Link
+                                                    key={tool.title}
+                                                    href={tool.href}
+                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                >
+                                                    {getIcon(tool.title)}
+                                                    {tool.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-sm font-semibold text-muted-foreground mb-2">Image Tools</p>
+                                        <div className="space-y-2">
+                                            {imgTools.map((tool) => (
                                                 <Link
                                                     key={tool.title}
                                                     href={tool.href}

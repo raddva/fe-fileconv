@@ -31,6 +31,8 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
     const [loading, setLoading] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [compressionLevel, setCompressionLevel] = useState("medium");
+    const [ocrText, setOcrText] = useState<string | null>(null);
+    const [ocrLanguage, setOcrLanguage] = useState("en");
 
     const backendUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -77,7 +79,7 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
             formData.append(key, files[0]);
         }
 
-        if (endpoint === "/compress") {
+        if (endpoint === "/compress" || endpoint === "/image-compress") {
             formData.append("power", compressionLevel);
         }
 
@@ -86,6 +88,10 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
             if (rangeInput?.value) {
                 formData.append("ranges", rangeInput.value);
             }
+        }
+
+        if (endpoint === "/image-to-text") {
+            formData.append("lang", ocrLanguage);
         }
 
         setLoading(true);
@@ -103,6 +109,8 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
                 if (json.images?.length) {
                     setDownloadUrl(json.images[0]);
                     setDownloadFilename("output.zip");
+                } else if (json.text) {
+                    setOcrText(json.text);
                 }
             } else {
                 const blob = await res.blob();
@@ -190,7 +198,7 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
 
                 {extra && <div className="mt-4">{extra}</div>}
 
-                {endpoint === "/compress" && (
+                {(endpoint === "/compress" || endpoint === "/image-compress") && (
                     <div className="mt-6">
                         <Label className="text-sm mb-1">Compression level</Label>
                         <Select value={compressionLevel} onValueChange={setCompressionLevel}>
@@ -206,6 +214,22 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
                     </div>
                 )}
 
+                {endpoint === "/image-to-text" && (
+                    <div className="mt-6">
+                        <Label className="text-sm mb-1">OCR Language</Label>
+                        <Select value={ocrLanguage} onValueChange={setOcrLanguage}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Choose OCR language" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="en">🇺🇸 - English</SelectItem>
+                                <SelectItem value="id">🇮🇩 - Indonesian</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                )}
+
+
                 <div className="mt-6">
                     <Button disabled={!files.length || loading} onClick={handleConvert} className="w-full">
                         {loading ? "Processing..." : "Process"}
@@ -213,14 +237,35 @@ export function Tools({ title, accept, multiple, endpoint, extra }: Props) {
                 </div>
 
                 {downloadUrl && downloadFilename && (
-                    <a
-                        href={downloadUrl}
-                        download={downloadFilename}
-                        className="block text-center text-blue-600 underline text-sm mt-4"
-                    >
-                        Download Result ({downloadFilename})
-                    </a>
+                    <>
+                        <a
+                            href={downloadUrl}
+                            download={downloadFilename}
+                            className="block text-center text-blue-600 underline text-sm mt-4"
+                        >
+                            Download Result ({downloadFilename})
+                        </a>
+
+                        {downloadFilename.endsWith(".png") && (
+                            <div className="flex justify-center mt-4">
+                                <Avatar className="w-32 h-32 shadow-lg border rounded-xl">
+                                    <AvatarImage src={downloadUrl} alt="Preview" />
+                                    <AvatarFallback>IMG</AvatarFallback>
+                                </Avatar>
+                            </div>
+                        )}
+                    </>
                 )}
+
+                {ocrText && (
+                    <div className="mt-6">
+                        <h4 className="font-medium text-sm mb-2 text-muted-foreground">Extracted Text</h4>
+                        <pre className="bg-muted p-3 rounded-md text-sm whitespace-pre-wrap max-h-80 overflow-auto">
+                            {ocrText}
+                        </pre>
+                    </div>
+                )}
+
             </div>
         </main>
     );
