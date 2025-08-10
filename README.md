@@ -1,8 +1,6 @@
-# ⚙️ File Converter (Front-end)
+# ⚙️ FILECONV - Image & File Tools (NextJS + ShadCN UI)
 
-This is the frontend of a full-stack file converter application built using **Next.js 14**, **TypeScript**, **TailwindCSS**, and **ShadCN UI**. It connects to the Flask backend via API routes to convert, merge, split, and compress PDF files, as well as convert between DOCX, XLSX, PPTX, and image formats.
-
----
+This is the frontend of a full-stack file converter application built using **Next.js 14**, **TypeScript**, **TailwindCSS**, and **ShadCN UI**. It provides a sleek, modern, and responsive interface that connects to the **Flask** backend via API routes to handle file conversions, PDF tools, image processing, and utility features — all in one place.
 
 ## 🧱 Tech Stack
 
@@ -13,10 +11,6 @@ This is the frontend of a full-stack file converter application built using **Ne
 - [Lucide Icons](https://lucide.dev/)
 - [React Hook Form](https://react-hook-form.com/)
 - [React Dropzone](https://react-dropzone.js.org/)
-- [Axios](https://axios-http.com/)
-- [Framer Motion](https://www.framer.com/motion/) (optional animations)
-
-
 
 ## 🚀 Getting Started
 
@@ -32,7 +26,6 @@ This is the frontend of a full-stack file converter application built using **Ne
    ```
 3. **Open your browser**
    Visit http://localhost:3000
-
 
 ## 📁 Project Structure
 
@@ -53,7 +46,6 @@ frontend/
 └── README.md
 ```
 
-
 ## 🛠 Features (Frontend UI)
 
 - 📄 Upload and preview files before conversion
@@ -67,15 +59,18 @@ frontend/
   - PDF ↔️ Images
   - Merge/Split/Compress PDFs
 - Image Tools:
-  - Convert to JPG (soon)
-  - Background Remove (new!)
-  - Image to Text (new!)
-  - Upscale Image (new!)
-  - Compress Image (new!)
-  - Crop & Resize Image (soon)
-
----
+  - Convert to JPG
+  - Background Remove
+  - Image to Text
+  - Upscale Image
+  - Compress Image
+  - Crop & Resize Image
+  - QR Code Generator (new!)
 
 ## 🌐 Live Demo
 
 This project has been deployed via [Vercel](https://fileconv.vercel.app/)
+
+## 🙋‍♀️ Author
+
+Made with ❤️ by Asdya.

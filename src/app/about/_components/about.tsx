@@ -22,14 +22,20 @@ export default function About() {
                         <span className="font-semibold bg-gradient-to-r from-red-500 to-pink-500 text-transparent bg-clip-text">
                             Fileconv
                         </span>{" "}
-                        is your all-in-one workspace for working with documents — fast, secure, and delightfully easy to use. Whether you’re converting a PDF to Word, extracting images, or compressing files for email, Fileconv handles it all with precision and privacy.
+                        is your all-in-one workspace for working with documents and images — fast, secure, and delightfully easy to use.
+                        Whether you’re converting a PDF to Word, extracting images, compressing files for email, editing pictures, or generating QR codes,
+                        Fileconv handles it all with precision and privacy.
                     </p>
                     <p>
-                        Inspired by tools like <strong>iLovePDF</strong>, Fileconv brings powerful features into a beautifully simple interface. Drag, drop, convert — that’s it. No clutter. No signup required.
+                        Inspired by tools like <strong>iLovePDF</strong>, Fileconv brings powerful features into a beautifully simple interface.
+                        Drag, drop, convert — that’s it. No clutter. No signup required.
                     </p>
                     <p>
-                        Built with <strong>Next.js</strong>, <strong>Tailwind CSS</strong>, and <strong>ShadCN UI</strong> and <strong>Python</strong>, this tool delivers top-tier performance across devices, ensuring your files are processed quickly — without ever leaving your browser.
+                        Built with <strong>Next.js</strong>, <strong>Tailwind CSS</strong>, <strong>ShadCN UI</strong>, and <strong>Python</strong>,
+                        this tool delivers top-tier performance across devices, ensuring your files and images are processed quickly —
+                        without ever leaving your browser.
                     </p>
+
                 </CardContent>
             </Card>
 

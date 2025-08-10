@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { File, FileCog, FileText, Globe, Home, ImageIcon, Menu, Merge, Presentation, SheetIcon, Split } from "lucide-react"
+import { Crop, File, FileCog, FileImage, FileText, Globe, Home, ImageDown, ImageIcon, Images, ImageUpscale, Menu, Merge, Presentation, QrCode, SheetIcon, Split } from "lucide-react"
 
 import {
     NavigationMenu,
@@ -100,6 +100,11 @@ const imgTools = [
         title: "Image to Text",
         href: "/image-tools/to-text",
         description: "Extract text from your images",
+    },
+    {
+        title: "QR Code Generator",
+        href: "/others/qr-generator",
+        description: "Generate QR Code from your link",
     },
 ]
 
@@ -200,6 +205,23 @@ export function Navbar() {
                                     <TooltipContent>Coming very soon!</TooltipContent>
                                 </Tooltip>
                             </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <span className="cursor-not-allowed">
+                                            <NavigationMenuLink
+                                                asChild
+                                                className={`${navigationMenuTriggerStyle()} pointer-events-none`}
+                                            >
+                                                <Link href="#" onClick={(e) => e.preventDefault()}>
+                                                    Image Editor
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent>Coming very soon!</TooltipContent>
+                                </Tooltip>
+                            </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
@@ -212,78 +234,84 @@ export function Navbar() {
                                     <Menu className="h-6 w-6" />
                                 </button>
                             </SheetTrigger>
-                            <SheetContent side="left" className="w-[280px] sm:w-[300px]">
-                                <SheetHeader>
-                                    <SheetTitle className="text-left text-lg font-semibold">📂 Menu</SheetTitle>
-                                </SheetHeader>
+                            <SheetContent side="left" className="w-[280px] sm:w-[300px] p-0">
+                                <div className="flex flex-col h-full">
+                                    <SheetHeader className="p-4 border-b">
+                                        <SheetTitle className="text-left text-lg font-semibold">📂 Menu</SheetTitle>
+                                    </SheetHeader>
 
-                                <div className="mt-6 space-y-6 ml-6 mr-2">
-                                    <div>
-                                        <Link href="/" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
-                                            <Home className="w-4 h-4" />
-                                            Home
-                                        </Link>
-                                        <Link href="/about" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
-                                            <Globe className="w-4 h-4" />
-                                            About
-                                        </Link>
-                                    </div>
-
-                                    <div>
-                                        <p className="text-sm font-semibold text-muted-foreground mb-2">Convert PDF</p>
+                                    <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
                                         <div className="space-y-2">
-                                            {fileTools.map((tool) => (
-                                                <Link
-                                                    key={tool.title}
-                                                    href={tool.href}
-                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
-                                                >
-                                                    {getIcon(tool.title)}
-                                                    {tool.title}
-                                                </Link>
-                                            ))}
+                                            <Link href="/" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
+                                                <Home className="w-4 h-4" /> Home
+                                            </Link>
+                                            <Link href="/about" className="flex items-center gap-2 font-medium text-foreground hover:text-blue-500">
+                                                <Globe className="w-4 h-4" /> About
+                                            </Link>
                                         </div>
-                                    </div>
 
-                                    <Separator />
+                                        <Separator className="my-4" />
 
-                                    <div>
-                                        <p className="text-sm font-semibold text-muted-foreground mb-2">PDF Tools</p>
-                                        <div className="space-y-2">
-                                            {pdfTools.map((tool) => (
-                                                <Link
-                                                    key={tool.title}
-                                                    href={tool.href}
-                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
-                                                >
-                                                    {getIcon(tool.title)}
-                                                    {tool.title}
-                                                </Link>
-                                            ))}
+                                        <div>
+                                            <p className="text-sm font-semibold text-muted-foreground mb-2">Convert PDF</p>
+                                            <div className="space-y-2">
+                                                {fileTools.map((tool) => (
+                                                    <Link
+                                                        key={tool.title}
+                                                        href={tool.href}
+                                                        className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                    >
+                                                        {getIcon(tool.title)}
+                                                        {tool.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div>
-                                        <p className="text-sm font-semibold text-muted-foreground mb-2">Image Tools</p>
-                                        <div className="space-y-2">
-                                            {imgTools.map((tool) => (
-                                                <Link
-                                                    key={tool.title}
-                                                    href={tool.href}
-                                                    className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
-                                                >
-                                                    {getIcon(tool.title)}
-                                                    {tool.title}
-                                                </Link>
-                                            ))}
+                                        <Separator />
+
+                                        <div>
+                                            <p className="text-sm font-semibold text-muted-foreground mb-2">PDF Tools</p>
+                                            <div className="space-y-2">
+                                                {pdfTools.map((tool) => (
+                                                    <Link
+                                                        key={tool.title}
+                                                        href={tool.href}
+                                                        className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                    >
+                                                        {getIcon(tool.title)}
+                                                        {tool.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <Separator />
+                                        <div>
+                                            <p className="text-sm font-semibold text-muted-foreground mb-2">Image Tools</p>
+                                            <div className="space-y-2">
+                                                {imgTools.map((tool) => (
+                                                    <Link
+                                                        key={tool.title}
+                                                        href={tool.href}
+                                                        className="flex items-center gap-2 text-sm hover:text-blue-500 p-2 rounded-md transition"
+                                                    >
+                                                        {getIcon(tool.title)}
+                                                        {tool.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
 
-                                    <div className="text-sm text-muted-foreground flex items-center gap-2">
-                                        <FileCog className="w-4 h-4" />
-                                        File Editor <span className="text-gray-400">(Coming Soon)</span>
+                                        <Separator />
+
+                                        <div className="text-sm text-muted-foreground flex items-center gap-6">
+                                            <div className="flex items-center gap-2">
+                                                <FileCog className="w-4 h-4" />
+                                                <span>File Editor</span>
+                                                <span className="text-gray-400">(Coming Soon)</span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </SheetContent>
@@ -316,23 +344,24 @@ function ListItem({
     )
 }
 
+const iconMap: Record<string, React.JSX.Element> = {
+    "PDF - DOCX": <FileText className="w-4 h-4" />,
+    "PDF - IMG": <ImageIcon className="w-4 h-4" />,
+    "PDF - XLSX": <SheetIcon className="w-4 h-4" />,
+    "PDF - PPTX": <Presentation className="w-4 h-4" />,
+    "Merge PDFs": <Merge className="w-4 h-4" />,
+    "Split PDFs": <Split className="w-4 h-4" />,
+    "Compress PDFs": <FileCog className="w-4 h-4" />,
+
+    "Remove Background": <Images className="w-4 h-4" />,
+    "Upscale Image": <ImageUpscale className="w-4 h-4" />,
+    "Compress Image": <ImageDown className="w-4 h-4" />,
+    "Convert to JPG": <FileImage className="w-4 h-4" />,
+    "Crop Image": <Crop className="w-4 h-4" />,
+    "Image to Text": <FileText className="w-4 h-4" />,
+    "QR Code Generator": <QrCode className="w-4 h-4" />,
+};
+
 function getIcon(name: string) {
-    switch (name) {
-        case "PDF - DOCX":
-            return <FileText className="w-4 h-4" />
-        case "PDF - IMG":
-            return <ImageIcon className="w-4 h-4" />
-        case "PDF - XLSX":
-            return <SheetIcon className="w-4 h-4" />
-        case "PDF - PPTX":
-            return <Presentation className="w-4 h-4" />
-        case "Merge PDFs":
-            return <Merge className="w-4 h-4" />
-        case "Split PDFs":
-            return <Split className="w-4 h-4" />
-        case "Compress PDFs":
-            return <FileCog className="w-4 h-4" />
-        default:
-            return <FileText className="w-4 h-4" />
-    }
+    return iconMap[name] || <FileText className="w-4 h-4" />;
 }
