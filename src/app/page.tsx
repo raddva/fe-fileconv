@@ -126,6 +126,14 @@ const tools = [
     badge: "🛠️ Coming Soon",
     is_disabled: true,
   },
+  {
+    title: "YT MP3 Downloader",
+    description: "Download Audio From YouTube URL",
+    href: "/youtube/mp3",
+    icon: <ImageIcon className="text-blue-500" />,
+    badge: "NEW!!!",
+    is_disabled: false,
+  },
 ]
 
 export default function DashboardPage() {
